@@ -44,7 +44,9 @@ classes = (
     'plane', 'car', 'bird', 'cat', 'deer', 'dog', 'frog', 'horse', 'ship', 'truck'
 )
 
-#定义网络
+# 定义网络
+
+
 class Net(nn.Module):
     def __init__(self):
         super(Net, self).__init__()
@@ -63,39 +65,40 @@ class Net(nn.Module):
         x = self.fc3(x)
         return x
 
-net = Net()
-#定义优化器
-criterion = nn.CrossEntropyLoss()
-optimizer = optim.SGD(net.parameters(),lr=0.001,momentum=0.9)
 
-#训练网络
+net = Net()
+# 定义优化器
+criterion = nn.CrossEntropyLoss()
+optimizer = optim.SGD(net.parameters(), lr=0.001, momentum=0.9)
+
+# 训练网络
 t.set_num_threads(8)
 for epoch in range(2):
     running_loss = 0
-    for i,data in enumerate(trainloader,0):
+    for i, data in enumerate(trainloader, 0):
         inputs, labels = data
-        
-        #梯度清零
+
+        # 梯度清零
         optimizer.zero_grad()
-        
-        #forward+backward
+
+        # forward+backward
         outputs = net(inputs)
-        loss = criterion(outputs,labels)
+        loss = criterion(outputs, labels)
         loss.backward()
 
-        #更新参数
+        # 更新参数
         optimizer.step()
 
-        #打印log信息
-        #loss是一个scalar,需要使用loss.item()来获取数值,不能使用loss[0]
+        # 打印log信息
+        # loss是一个scalar,需要使用loss.item()来获取数值,不能使用loss[0]
         running_loss += loss.item()
-         if i % 2000 == 1999:
-            print('[%d,%5d] loss: %.3f' %(epoch+1,i+1,running_loss/2000))
+        if i % 2000 == 1999:
+            print('[%d,%5d] loss: %.3f' % (epoch+1, i+1, running_loss/2000))
             running_loss = 0.0
 print("Finished Training")
 
 
-#测试网络
+# 测试网络
 
 correct = 0
 total = 0
@@ -103,7 +106,7 @@ with t.no_grad():
     for data in testloader:
         images, labels = data
         outputs = net(images)
-        predicted = t.max(outputs,1)
+        predicted = t.max(outputs, 1)
         total += labels.size(0)
         correct += (predicted == labels).sum()
 
