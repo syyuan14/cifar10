@@ -17,7 +17,7 @@ trainset = tv.datasets.CIFAR10(
     root='./data/',
     train=True,
     transform=transform,
-    download=True
+    download=False
 )
 trainloader = t.utils.data.DataLoader(
     trainset,
@@ -29,7 +29,7 @@ trainloader = t.utils.data.DataLoader(
 testset = tv.datasets.CIFAR10(
     root='./data',
     train=False,
-    download=True,
+    download=False,
     transform=transform
 )
 testloader = t.utils.data.DataLoader(
