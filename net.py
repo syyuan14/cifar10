@@ -21,7 +21,7 @@ trainset = tv.datasets.CIFAR10(
 )
 trainloader = t.utils.data.DataLoader(
     trainset,
-    batch_size=4,
+    batch_size=5,
     shuffle=True,
     num_workers=2,
 )
@@ -34,7 +34,7 @@ testset = tv.datasets.CIFAR10(
 )
 testloader = t.utils.data.DataLoader(
     testset,
-    batch_size=4,
+    batch_size=5,
     shuffle=False,
     num_workers=2
 )
