@@ -106,7 +106,7 @@ with t.no_grad():
     for data in testloader:
         images, labels = data
         outputs = net(images)
-        predicted = t.max(outputs, 1)
+        _, predicted = t.max(outputs, 1)
         total += labels.size(0)
         correct += (predicted == labels).sum()
 
