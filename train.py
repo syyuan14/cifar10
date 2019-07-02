@@ -61,7 +61,7 @@ for epoch in range(2):
         # 打印log信息
         # loss是一个scalar,需要使用loss.item()来获取数值,不能使用loss[0]
         running_loss += loss.item()
-        if i % 2000 == 1999:
+        if i % 200 == 199:
             print('[%d,%5d] loss: %.3f' % (epoch+1, i+1, running_loss/2000))
             running_loss = 0.0
 t.save(net.state_dict(), "net.pth")
