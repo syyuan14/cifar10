@@ -6,6 +6,7 @@ import torchvision.transforms as transforms
 from torchvision.transforms import ToPILImage
 from torch import optim
 from net import Net
+from resnet import ResNet
 show = ToPILImage()
 
 
@@ -33,7 +34,8 @@ classes = (
 )
 
 
-net = Net()
+# net = Net()
+net = ResNet()
 # 定义优化器
 criterion = nn.CrossEntropyLoss()
 optimizer = optim.SGD(net.parameters(), lr=0.001, momentum=0.9)
@@ -63,4 +65,4 @@ for epoch in range(2):
             print('[%d,%5d] loss: %.3f' % (epoch+1, i+1, running_loss/2000))
             running_loss = 0.0
 t.save(net.state_dict(), "net.pth")
-print("Finished Training")
+print("Finished Training")  
