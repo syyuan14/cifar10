@@ -1,4 +1,4 @@
-from net import Net
+from resnet import ResNet
 import torch as t
 import torchvision as tv
 import torch.nn as nn
@@ -9,7 +9,7 @@ from torch import optim
 show = ToPILImage()
 
 # 加载测试模型
-net = Net()
+net = ResNet()
 net.load_state_dict(t.load("net.pth"))
 # 定义数据的预处理
 transform = transforms.Compose([
